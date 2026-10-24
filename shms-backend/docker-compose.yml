@@ -1,0 +1,20 @@
+version: "3.8"
+
+# Optional: run just MySQL locally so you don't need a local install.
+# Run: docker compose up -d
+# Then run the Spring Boot app normally from Eclipse (it will connect to this on localhost:3306).
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: shms-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: shms_db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - shms_mysql_data:/var/lib/mysql
+
+volumes:
+  shms_mysql_data:
